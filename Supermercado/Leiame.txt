@@ -1,0 +1,4 @@
+﻿Objetivo é criar um projeto onde será cadastrado um produto, enviado ao webservice
+e este assim salvará no banco de dados.
+
+Idéia é ter duas lojas, e uma sicronização entre as duas, onde o produto não poder não estar salvo em uma e na outra não.
