@@ -14,7 +14,7 @@ namespace WebApiSupermercado.Controllers
         // GET: api/Produtos
         public IEnumerable<string> Get()
         {
-            return new string[] { "João Rafael Menezes", "Pedro Geromel" };
+            return new string[] { "" };
         }
 
         // GET: api/Produtos/5
