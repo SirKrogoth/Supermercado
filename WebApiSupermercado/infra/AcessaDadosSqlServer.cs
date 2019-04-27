@@ -14,7 +14,9 @@ namespace WebApiSupermercado.infra
         public SqlConnection criarConexaoBanco()
         {
             //Aqui temos todos os parametros de conexão com o banco de dados.
-            return new SqlConnection(Settings.Default.stringConexao);
+            SqlConnection conexao = new SqlConnection(Settings.Default.stringConexao);
+
+            return conexao;
         }        
 
         //Limpando parametro criado.

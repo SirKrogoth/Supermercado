@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebApiSupermercado.dominio.entidade;
+using WebApiSupermercado.dominio.negocio;
 
 namespace WebApiSupermercado.Controllers
 {
@@ -22,9 +24,13 @@ namespace WebApiSupermercado.Controllers
         }
 
         // POST: api/Produtos
-        public void Post([FromBody]string value)
+        public string Post([FromBody]Produto produto)
         {
+            ProdutoNegocio pn = new ProdutoNegocio();
 
+            string retorno = pn.InserirNovoProduto(produto);
+
+            return retorno;
         }
 
         // PUT: api/Produtos/5
