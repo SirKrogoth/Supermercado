@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using WebApiSupermercado.dominio.entidade;
+using System.Web.Script.Serialization;
 
 namespace Supermercado.dominio.negocio
 {
@@ -26,5 +27,7 @@ namespace Supermercado.dominio.negocio
                 }    
             }
         }
+
+        
     }
 }

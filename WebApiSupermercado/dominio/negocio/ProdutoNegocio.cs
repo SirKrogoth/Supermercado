@@ -5,6 +5,7 @@ using System.Web;
 using WebApiSupermercado.infra;
 using WebApiSupermercado.dominio.entidade;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace WebApiSupermercado.dominio.negocio
 {
@@ -36,11 +37,54 @@ namespace WebApiSupermercado.dominio.negocio
 
                 cmd.ExecuteNonQuery();
 
+                conexao.Close();
+
                 return "Produto " + produto.descricao + " inserido com sucesso.";
             }
             catch (Exception e)
             {
                 return "Não foi possivel inserir o Produto " + produto.descricao + ".";
+            }
+        }
+
+        public List<Produto> BuscarTodosProdutos()
+        {
+            try
+            {
+                conexao = acessaDadosSqlServer.criarConexaoBanco();
+                conexao.Open();
+
+                cmd = new SqlCommand();
+                cmd.CommandText = "SELECT * FROM tblProduto";
+
+                cmd.Connection = conexao;
+
+                DataTable table = new DataTable();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                table.Load(reader);
+
+                List<Produto> produtos = new List<Produto>();
+
+                foreach (DataRow item in table.Rows)
+                {
+                    Produto produto = new Produto();
+
+                    produto.codigo = Convert.ToInt32(item["codigo"]);
+                    produto.codEmpresa = Convert.ToInt32(item["codEmpresa"]);
+                    produto.descricao = item["descricao"].ToString();
+                    produto.custo = Convert.ToDecimal(item["custo"]);
+                    produto.precoVenda = Convert.ToDecimal(item["precoVenda"]);
+                    produto.estoque = Convert.ToSingle(item["estoque"]);
+
+                    produtos.Add(produto);
+                }
+
+                return produtos;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
     }

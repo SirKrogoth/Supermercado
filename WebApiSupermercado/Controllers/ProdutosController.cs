@@ -12,9 +12,11 @@ namespace WebApiSupermercado.Controllers
     public class ProdutosController : ApiController
     {
         // GET: api/Produtos
-        public IEnumerable<string> Get()
+        public IEnumerable<Produto> Get()
         {
-            return new string[] { "" };
+            ProdutoNegocio produtoNegocio = new ProdutoNegocio();
+
+            return produtoNegocio.BuscarTodosProdutos();
         }
 
         // GET: api/Produtos/5
@@ -32,7 +34,6 @@ namespace WebApiSupermercado.Controllers
 
             return retorno;
         }
-
         // PUT: api/Produtos/5
         public void Put(int id, [FromBody]string value)
         {

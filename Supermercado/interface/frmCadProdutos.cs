@@ -5,8 +5,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using WebApiSupermercado.dominio.entidade;
 
@@ -31,8 +33,37 @@ namespace Supermercado
             produto.estoque = Convert.ToSingle(txtEstoque.Text);
 
             pnd.InserirProdutoWebServices(produto);
-
+            
             MessageBox.Show("Produto inserido com sucesso");
+
+            BuscarTodosProdutos();
+        }
+
+        private void frmCadProdutos_Load(object sender, EventArgs e)
+        {
+            BuscarTodosProdutos();
+        }
+
+        public async void BuscarTodosProdutos()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:53660/api/Produtos");
+
+                var resposta = await client.GetAsync("");
+
+                string dados = await resposta.Content.ReadAsStringAsync();
+
+                List<Produto> produtos = new JavaScriptSerializer().Deserialize<List<Produto>>(dados);
+
+                dgvProdutos.AutoGenerateColumns = false;
+                dgvProdutos.DataSource = produtos;
+             }
+        }
+
+        private void btnSincronizarAgora_Click(object sender, EventArgs e)
+        {
+            BuscarTodosProdutos();
         }
     }
 }

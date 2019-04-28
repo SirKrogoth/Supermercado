@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,6 +45,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtEstoque = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
+            this.dgvProdutos = new System.Windows.Forms.DataGridView();
+            this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCodEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrecoVenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCusto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSincronizarAgora = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -151,11 +164,96 @@
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
             // 
+            // dgvProdutos
+            // 
+            this.dgvProdutos.AllowUserToAddRows = false;
+            this.dgvProdutos.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvProdutos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colCodigo,
+            this.colCodEmpresa,
+            this.colDescricao,
+            this.colPrecoVenda,
+            this.colCusto,
+            this.colEstoque});
+            this.dgvProdutos.Location = new System.Drawing.Point(13, 258);
+            this.dgvProdutos.Name = "dgvProdutos";
+            this.dgvProdutos.ReadOnly = true;
+            this.dgvProdutos.RowHeadersVisible = false;
+            this.dgvProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvProdutos.Size = new System.Drawing.Size(705, 180);
+            this.dgvProdutos.TabIndex = 13;
+            // 
+            // colCodigo
+            // 
+            this.colCodigo.DataPropertyName = "codigo";
+            this.colCodigo.HeaderText = "Código";
+            this.colCodigo.Name = "colCodigo";
+            this.colCodigo.ReadOnly = true;
+            this.colCodigo.Width = 50;
+            // 
+            // colCodEmpresa
+            // 
+            this.colCodEmpresa.DataPropertyName = "codEmpresa";
+            this.colCodEmpresa.HeaderText = "Empresa";
+            this.colCodEmpresa.Name = "colCodEmpresa";
+            this.colCodEmpresa.ReadOnly = true;
+            // 
+            // colDescricao
+            // 
+            this.colDescricao.DataPropertyName = "descricao";
+            this.colDescricao.HeaderText = "Descrição";
+            this.colDescricao.Name = "colDescricao";
+            this.colDescricao.ReadOnly = true;
+            this.colDescricao.Width = 200;
+            // 
+            // colPrecoVenda
+            // 
+            this.colPrecoVenda.DataPropertyName = "precoVenda";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colPrecoVenda.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colPrecoVenda.HeaderText = "Preço Venda";
+            this.colPrecoVenda.Name = "colPrecoVenda";
+            this.colPrecoVenda.ReadOnly = true;
+            // 
+            // colCusto
+            // 
+            this.colCusto.DataPropertyName = "custo";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colCusto.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colCusto.HeaderText = "Custo";
+            this.colCusto.Name = "colCusto";
+            this.colCusto.ReadOnly = true;
+            // 
+            // colEstoque
+            // 
+            this.colEstoque.DataPropertyName = "estoque";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colEstoque.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colEstoque.HeaderText = "Estoque";
+            this.colEstoque.Name = "colEstoque";
+            this.colEstoque.ReadOnly = true;
+            // 
+            // btnSincronizarAgora
+            // 
+            this.btnSincronizarAgora.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSincronizarAgora.Location = new System.Drawing.Point(605, 12);
+            this.btnSincronizarAgora.Name = "btnSincronizarAgora";
+            this.btnSincronizarAgora.Size = new System.Drawing.Size(113, 38);
+            this.btnSincronizarAgora.TabIndex = 14;
+            this.btnSincronizarAgora.Text = "Sincronizar Agora";
+            this.btnSincronizarAgora.UseVisualStyleBackColor = true;
+            this.btnSincronizarAgora.Click += new System.EventHandler(this.btnSincronizarAgora_Click);
+            // 
             // frmCadProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 450);
+            this.ClientSize = new System.Drawing.Size(728, 450);
+            this.Controls.Add(this.btnSincronizarAgora);
+            this.Controls.Add(this.dgvProdutos);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.txtEstoque);
             this.Controls.Add(this.label6);
@@ -172,6 +270,8 @@
             this.Name = "frmCadProdutos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Produtos";
+            this.Load += new System.EventHandler(this.frmCadProdutos_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,5 +292,13 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtEstoque;
         private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.DataGridView dgvProdutos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCodigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCodEmpresa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescricao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecoVenda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCusto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEstoque;
+        private System.Windows.Forms.Button btnSincronizarAgora;
     }
 }
