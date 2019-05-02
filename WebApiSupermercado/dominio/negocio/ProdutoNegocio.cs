@@ -87,5 +87,29 @@ namespace WebApiSupermercado.dominio.negocio
                 throw new Exception(e.Message);
             }
         }
+
+        public string DeletarProduto(int codigo)
+        {
+            try
+            {
+                conexao = acessaDadosSqlServer.criarConexaoBanco();
+                conexao.Open();
+
+                cmd = new SqlCommand();
+
+                cmd.CommandText = "DELETE FROM tblProduto WHERE codigo = @codigo";
+                cmd.Parameters.AddWithValue("@codigo", codigo);
+                cmd.Connection = conexao;
+                cmd.ExecuteNonQuery();
+
+                conexao.Close();
+
+                return "Produto excluido com sucesso";
+            }
+            catch (Exception)
+            {
+                return "Falha ao deletar produto: " + codigo.ToString();
+            }
+        }
     }
 }

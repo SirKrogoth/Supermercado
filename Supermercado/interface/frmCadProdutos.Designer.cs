@@ -53,6 +53,7 @@
             this.colCusto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSincronizarAgora = new System.Windows.Forms.Button();
+            this.btnDeletarProduto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -185,6 +186,7 @@
             this.dgvProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProdutos.Size = new System.Drawing.Size(705, 180);
             this.dgvProdutos.TabIndex = 13;
+            this.dgvProdutos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutos_CellDoubleClick);
             // 
             // colCodigo
             // 
@@ -247,11 +249,22 @@
             this.btnSincronizarAgora.UseVisualStyleBackColor = true;
             this.btnSincronizarAgora.Click += new System.EventHandler(this.btnSincronizarAgora_Click);
             // 
+            // btnDeletarProduto
+            // 
+            this.btnDeletarProduto.Location = new System.Drawing.Point(254, 221);
+            this.btnDeletarProduto.Name = "btnDeletarProduto";
+            this.btnDeletarProduto.Size = new System.Drawing.Size(75, 23);
+            this.btnDeletarProduto.TabIndex = 15;
+            this.btnDeletarProduto.Text = "Deletar";
+            this.btnDeletarProduto.UseVisualStyleBackColor = true;
+            this.btnDeletarProduto.Click += new System.EventHandler(this.btnDeletarProduto_Click);
+            // 
             // frmCadProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 450);
+            this.Controls.Add(this.btnDeletarProduto);
             this.Controls.Add(this.btnSincronizarAgora);
             this.Controls.Add(this.dgvProdutos);
             this.Controls.Add(this.btnSalvar);
@@ -300,5 +313,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCusto;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstoque;
         private System.Windows.Forms.Button btnSincronizarAgora;
+        private System.Windows.Forms.Button btnDeletarProduto;
     }
 }

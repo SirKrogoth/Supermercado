@@ -43,7 +43,9 @@ namespace WebApiSupermercado.Controllers
         // DELETE: api/Produtos/5
         public void Delete(int id)
         {
+            ProdutoNegocio pn = new ProdutoNegocio();
 
+            string retorno = pn.DeletarProduto(id);
         }
     }
 }

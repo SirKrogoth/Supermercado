@@ -33,10 +33,10 @@ namespace Supermercado
             produto.estoque = Convert.ToSingle(txtEstoque.Text);
 
             pnd.InserirProdutoWebServices(produto);
-            
-            MessageBox.Show("Produto inserido com sucesso");
 
             BuscarTodosProdutos();
+
+            MessageBox.Show("Produto inserido com sucesso");            
         }
 
         private void frmCadProdutos_Load(object sender, EventArgs e)
@@ -64,6 +64,22 @@ namespace Supermercado
         private void btnSincronizarAgora_Click(object sender, EventArgs e)
         {
             BuscarTodosProdutos();
+        }
+
+        private void btnDeletarProduto_Click(object sender, EventArgs e)
+        {
+            ProdutoNegocioDesktop pnd = new ProdutoNegocioDesktop();
+
+            pnd.DeletarProduto(Convert.ToInt32(txtCodigo.Text));
+
+            BuscarTodosProdutos();
+
+            MessageBox.Show("Produto excluido com sucesso.", "Excluido com sucesso",MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dgvProdutos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

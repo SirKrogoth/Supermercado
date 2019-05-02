@@ -28,6 +28,23 @@ namespace Supermercado.dominio.negocio
             }
         }
 
-        
+        public async void DeletarProduto(int codigo)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string URI = @"http://localhost:53660/api/Produtos/";
+
+                client.BaseAddress = new Uri(URI);
+
+                try
+                {
+                    HttpResponseMessage resposta = await client.DeleteAsync(String.Format("{0}/{1}", URI, codigo));
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+            }
+        }
     }
 }
