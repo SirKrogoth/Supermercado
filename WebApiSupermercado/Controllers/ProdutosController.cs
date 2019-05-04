@@ -35,9 +35,11 @@ namespace WebApiSupermercado.Controllers
             return retorno;
         }
         // PUT: api/Produtos/5
-        public void Put(int id, [FromBody]string value)
+        public void Put([FromBody]Produto produto)
         {
+            ProdutoNegocio pn = new ProdutoNegocio();
 
+            pn.AtualizarProduto(produto);
         }
 
         // DELETE: api/Produtos/5

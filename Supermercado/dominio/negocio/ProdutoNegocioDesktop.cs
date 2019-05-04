@@ -46,5 +46,22 @@ namespace Supermercado.dominio.negocio
                 }
             }
         }
+
+        public async void AtualizarProdutoWebServices(Produto produto)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:53660/api/Produtos");
+
+                try
+                {
+                    HttpResponseMessage httpResponse = await client.PutAsJsonAsync("", produto);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+            }
+        }
     }
 }

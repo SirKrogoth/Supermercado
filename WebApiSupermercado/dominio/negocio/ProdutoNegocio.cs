@@ -111,5 +111,39 @@ namespace WebApiSupermercado.dominio.negocio
                 return "Falha ao deletar produto: " + codigo.ToString();
             }
         }
+
+        public string AtualizarProduto(Produto produto)
+        {
+            try
+            {
+                conexao = acessaDadosSqlServer.criarConexaoBanco();
+                conexao.Open();
+
+                cmd = new SqlCommand();
+
+                cmd.CommandText = "UPDATE tblProduto SET codEmpresa = @codEmpresa, descricao = @descricao," +
+                    " precoVenda = @precoVenda, custo = @custo, estoque = @estoque WHERE codigo = @codigo";
+
+                cmd.Parameters.AddWithValue("@codEmpresa", produto.codEmpresa);
+                cmd.Parameters.AddWithValue("@descricao", produto.descricao);
+                cmd.Parameters.AddWithValue("@precoVenda", produto.precoVenda);
+                cmd.Parameters.AddWithValue("@custo", produto.custo);
+                cmd.Parameters.AddWithValue("@estoque", produto.estoque);
+                cmd.Parameters.AddWithValue("@codigo", produto.codigo);
+
+                cmd.Connection = conexao;
+
+                cmd.ExecuteNonQuery();
+
+                conexao.Close();
+
+                return "Produto atualizado com sucesso";
+            }
+            catch (Exception e)
+            {
+                return "Não foi possível atualizar o produto";
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

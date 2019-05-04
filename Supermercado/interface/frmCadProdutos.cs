@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
@@ -26,22 +27,40 @@ namespace Supermercado
             ProdutoNegocioDesktop pnd = new ProdutoNegocioDesktop();
             Produto produto = new Produto();
 
-            produto.descricao = txtDescricao.Text;
-            produto.precoVenda = Convert.ToDecimal(txtPrecoVenda.Text);
-            produto.custo = Convert.ToDecimal(txtCusto.Text);
-            produto.codEmpresa = 1;
-            produto.estoque = Convert.ToSingle(txtEstoque.Text);
+            if (btnSalvar.Text == "Salvar")
+            {
+                produto.descricao = txtDescricao.Text;
+                produto.precoVenda = Convert.ToDecimal(txtPrecoVenda.Text);
+                produto.custo = Convert.ToDecimal(txtCusto.Text);
+                produto.codEmpresa = 1;
+                produto.estoque = Convert.ToSingle(txtEstoque.Text);
 
-            pnd.InserirProdutoWebServices(produto);
+                pnd.InserirProdutoWebServices(produto);
 
-            BuscarTodosProdutos();
+                BuscarTodosProdutos();
 
-            MessageBox.Show("Produto inserido com sucesso");            
+                MessageBox.Show("Produto inserido com sucesso");
+            }
+            else
+            {
+                produto.codigo = Convert.ToInt32(txtCodigo.Text);
+                produto.descricao = txtDescricao.Text;
+                produto.precoVenda = Convert.ToDecimal(txtPrecoVenda.Text);
+                produto.custo = Convert.ToDecimal(txtCusto.Text);
+                produto.codEmpresa = 1;
+                produto.estoque = Convert.ToSingle(txtEstoque.Text);
+
+                pnd.AtualizarProdutoWebServices(produto);
+
+                BuscarTodosProdutos();
+
+                MessageBox.Show("Produto atualizado com sucesso");
+            }
         }
 
         private void frmCadProdutos_Load(object sender, EventArgs e)
         {
-            BuscarTodosProdutos();
+            BuscarTodosProdutos();            ;
         }
 
         public async void BuscarTodosProdutos()
@@ -50,14 +69,18 @@ namespace Supermercado
             {
                 client.BaseAddress = new Uri("http://localhost:53660/api/Produtos");
 
-                var resposta = await client.GetAsync("");
-
-                string dados = await resposta.Content.ReadAsStringAsync();
-
-                List<Produto> produtos = new JavaScriptSerializer().Deserialize<List<Produto>>(dados);
-
-                dgvProdutos.AutoGenerateColumns = false;
-                dgvProdutos.DataSource = produtos;
+                try
+                {
+                    var resposta = await client.GetAsync("");
+                    string dados = await resposta.Content.ReadAsStringAsync();
+                    List<Produto> produtos = new JavaScriptSerializer().Deserialize<List<Produto>>(dados);
+                    dgvProdutos.AutoGenerateColumns = false;
+                    dgvProdutos.DataSource = produtos;
+                }
+                catch (Exception)
+                {
+                    
+                }                                                               
              }
         }
 
@@ -79,7 +102,27 @@ namespace Supermercado
 
         private void dgvProdutos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            Produto produtoSelecionado = new Produto();
 
+            produtoSelecionado = (dgvProdutos.SelectedRows[0].DataBoundItem as Produto);
+
+            PreencherCampos(produtoSelecionado);
+
+            btnSalvar.Text = "Atualizar";
+        }   
+        
+        public void PreencherCampos(Produto produto)
+        {
+            txtCodigo.Text = produto.codigo.ToString();
+            txtDescricao.Text = produto.descricao.ToString();
+            txtCusto.Text = produto.custo.ToString();
+            txtEstoque.Text = produto.estoque.ToString();
+            txtPrecoVenda.Text = produto.precoVenda.ToString();
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            btnSalvar.Text = "Salvar";
         }
     }
 }

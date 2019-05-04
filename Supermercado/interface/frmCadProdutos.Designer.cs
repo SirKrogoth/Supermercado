@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -54,6 +55,8 @@
             this.colEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSincronizarAgora = new System.Windows.Forms.Button();
             this.btnDeletarProduto = new System.Windows.Forms.Button();
+            this.btnNovo = new System.Windows.Forms.Button();
+            this.tmrAsync = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -259,11 +262,22 @@
             this.btnDeletarProduto.UseVisualStyleBackColor = true;
             this.btnDeletarProduto.Click += new System.EventHandler(this.btnDeletarProduto_Click);
             // 
+            // btnNovo
+            // 
+            this.btnNovo.Location = new System.Drawing.Point(335, 221);
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(75, 23);
+            this.btnNovo.TabIndex = 16;
+            this.btnNovo.Text = "Novo";
+            this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
+            // 
             // frmCadProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 450);
+            this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.btnDeletarProduto);
             this.Controls.Add(this.btnSincronizarAgora);
             this.Controls.Add(this.dgvProdutos);
@@ -314,5 +328,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstoque;
         private System.Windows.Forms.Button btnSincronizarAgora;
         private System.Windows.Forms.Button btnDeletarProduto;
+        private System.Windows.Forms.Button btnNovo;
+        private System.Windows.Forms.Timer tmrAsync;
     }
 }
