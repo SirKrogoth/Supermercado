@@ -145,5 +145,36 @@ namespace WebApiSupermercado.dominio.negocio
                 throw new Exception(e.Message);
             }
         }
+
+        public string AdicionarMarkupProduto(int codProduto, double markup)
+        {
+            try
+            {
+                conexao = acessaDadosSqlServer.criarConexaoBanco();
+                conexao.Open();
+
+                cmd = new SqlCommand();
+
+                cmd.CommandText = "UPDATE tblProduto SET precoVenda = custo * 1.@markup"+
+                                    " WHERE codigo = @codProduto";
+
+                cmd.Parameters.AddWithValue("@markup", markup);
+                cmd.Parameters.AddWithValue("@codProduto", codProduto);
+
+                cmd.Connection = conexao;
+                int retorno = cmd.ExecuteNonQuery();
+
+                conexao.Close();
+
+                if (retorno > 0)
+                    return "Markup do produto atualizado com sucesso.";
+                else
+                    return "Não foi possível atualizar o Markup do produto.";                
+            }
+            catch (Exception e)
+            {
+                return "Não foi possível atualizar o Markup do produto. Mensagem: " + e.Message;
+            }
+        }
     }
 }

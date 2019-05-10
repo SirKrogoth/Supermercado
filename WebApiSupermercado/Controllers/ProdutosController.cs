@@ -34,6 +34,17 @@ namespace WebApiSupermercado.Controllers
 
             return retorno;
         }
+
+        //POST: api/Produtos
+        public string Post([FromBody]int codProduto, double markup)
+        {
+            ProdutoNegocio pn = new ProdutoNegocio();
+
+            string retorno = pn.AdicionarMarkupProduto(codProduto, markup);
+
+            return retorno;
+        }
+
         // PUT: api/Produtos/5
         public void Put([FromBody]Produto produto)
         {
